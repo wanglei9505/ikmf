@@ -24,7 +24,15 @@
              	<li class="${not empty isIndex && isIndex ? 'active' : ''}"><a href="${ctx}/index-1${fns:getUrlSuffix()}"><span>${site.id eq '1'?'首　 页':'返回主站'}</span></a></li>
 				<c:forEach items="${fnc:getCategoryListByParentId('2',site.id)}" var="category" varStatus="status"><c:if test="${status.index lt 6}">
                     <c:set var="menuCategoryId" value=",${category.id},"/>
-		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''}"><a href="${category.url}" target="${category.target}"><span>${category.name}</span></a></li>
+		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''} dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="${category.url}" target="${category.target}"><span>${category.name}</span></a>
+						<%--<c:set var="articles" value="${category.articles}"/>--%>
+						<ul class="dropdown-menu">
+						<c:forEach var="article" items="${category.articles}" varStatus="artStatus">
+							<a href="${article.url}">${article.title}</a>
+						</c:forEach>
+						</ul>
+					</li>
 		    	</c:if></c:forEach>
 				<c:if test="${fnc:getSiteList().size() gt 1}">
 			    <li id="siteSwitch" class="dropdown">

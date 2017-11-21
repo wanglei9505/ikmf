@@ -110,7 +110,14 @@ public class CategoryService extends TreeService<CategoryDao, Category> {
 		Site site = new Site();
 		site.setId(siteId);
 		entity.setSite(site);
-		return dao.findByParentIdAndSiteId(entity);
+		List<Category> lists=dao.findByParentIdAndSiteId(entity);
+		List<Category> results=Lists.newArrayList();
+		//添加文章列表
+		for (Category list : lists){
+			list.setArticles(articleDao.findByCategoryId(list.getId()));
+			results.add(list);
+		}
+		return results;
 	}
 	
 	public Page<Category> find(Page<Category> page, Category category) {
