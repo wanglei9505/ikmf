@@ -183,12 +183,22 @@
 	<select id="findByIdIn" resultType="Article">
 		SELECT 
 			<include refid="cmsArticleColumns"/>
-		from cms_article a where 
+		from cms_article a
 		<where>
 			id in (${id});
 		</where>		
 	</select>
- 
+
+	<select id="findByCategoryId" resultType="Article">
+		SELECT
+		<include refid="cmsArticleColumns"/>
+		from cms_article a
+		<include refid="cmsArticleJoins"/>
+		<where>
+			a.category_id =#{id};
+		</where>
+	</select>
+
 	<update id="updateExpiredWeight">
 		update cms_article SET
 			 weight = 0
