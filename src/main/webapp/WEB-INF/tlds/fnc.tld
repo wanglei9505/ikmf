@@ -66,6 +66,14 @@
     <function-signature>java.util.List getCategoryListByIds(java.lang.String)</function-signature>
     <example>${fnc:getCategoryListByIds(categoryIds)}</example>  
   </function>
+
+  <function>
+    <description>获得子栏目列表</description>
+    <name>getCategoryListByParentId</name>
+    <function-class>com.thinkgem.jeesite.modules.cms.utils.CmsUtils</function-class>
+    <function-signature>java.util.List getCategoryListByParentId(java.lang.String,java.lang.String)</function-signature>
+    <example>${fnc:getCategoryListByParentId(parentId,siteId)}</example>
+  </function>
   
   <function>
     <description>获取文章</description>
