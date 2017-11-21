@@ -132,6 +132,16 @@ public class CmsUtils {
 	public static List<Category> getCategoryListByIds(String categoryIds){
 		return categoryService.findByIds(categoryIds);
 	}
+
+	/**
+	 * 根据站点id和父节点获取栏目
+	 * @param parentId 父节点ID
+	 * @param siteId 站点ID
+	 * @return
+	 */
+	public static List<Category> getCategoryListByParentId(String parentId, String siteId){
+		return categoryService.findByParentId(parentId,siteId);
+	}
 	
 	/**
 	 * 获取文章

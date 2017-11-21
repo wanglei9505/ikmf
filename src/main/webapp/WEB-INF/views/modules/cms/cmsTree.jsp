@@ -16,7 +16,10 @@
 			var setting = {view:{selectedMulti:false},data:{simpleData:{enable:true}}};
 			var zNodes=[
 		            <c:forEach items="${categoryList}" var="tpl">{id:'${tpl.id}', pId:'${not empty tpl.parent?tpl.parent.id:0}', name:"${tpl.name}", url:"${ctx}/cms/${not empty tpl.module?tpl.module:'none'}/?category.id=${tpl.id}", target:"cmsMainFrame"},
-		            </c:forEach>];
+					</c:forEach>];
+
+                <%--<c:forEach items="${categoryList}" var="tpl"><c:forEach items="tp1.articles" var="tp2">{id:'${tp2.id}', pId:'${not empty tp2.category?tp2.category.id:0}', name:"${tp2.title}", url:"${ctx}/cms/article/form?id=${tp2.id}", target:"cmsMainFrame"},</c:forEach>--%>
+            	<%--</c:forEach>];--%>
 			for(var i=0; i<zNodes.length; i++) {
 				// 移除父节点
 				if (zNodes[i] && zNodes[i].id == 1){
@@ -61,7 +64,7 @@
 <body>
 	<div class="accordion-group">
 	    <div class="accordion-heading">
-	    	<a class="accordion-toggle">栏目列表</a>
+	    	<a class="accordion-toggle">栏目列表ww</a>
 	    </div>
 	    <div class="accordion-body">
 			<div class="accordion-inner">

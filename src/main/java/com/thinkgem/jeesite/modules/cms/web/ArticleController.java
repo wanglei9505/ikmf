@@ -86,7 +86,7 @@ public class ArticleController extends BaseController {
 		if (article.getCategory()!=null && StringUtils.isNotBlank(article.getCategory().getId())){
 			List<Category> list = categoryService.findByParentId(article.getCategory().getId(), Site.getCurrentSiteId());
 			if (list.size() > 0){
-				article.setCategory(null);
+				article.setCategory(article.getCategory());
 			}else{
 				article.setCategory(categoryService.get(article.getCategory().getId()));
 			}

@@ -52,6 +52,16 @@ public class Category extends TreeEntity<Category> {
 	
 	private List<Category> childList = Lists.newArrayList(); 	// 拥有子分类列表
 
+	private List<Article> articles=Lists.newArrayList();		//当前节点拥有的文章
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
 	public Category(){
 		super();
 		this.module = "";

@@ -22,7 +22,9 @@ public interface ArticleDao extends CrudDao<Article> {
 //	{
 //		return find("from Article where id in (:p1)", new Parameter(new Object[]{ids}));
 //	}
-	
+	//根据category 查文章列表
+	public List<Article> findByCategoryId(String id);
+
 	public int updateHitsAddOne(String id);
 //	{
 //		return update("update Article set hits=hits+1 where id = :p1", new Parameter(id));

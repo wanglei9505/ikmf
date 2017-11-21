@@ -6,8 +6,11 @@ package com.thinkgem.jeesite.modules.cms.service;
 import java.util.List;
 import java.util.Set;
 
+import com.thinkgem.jeesite.modules.cms.dao.ArticleDao;
+import com.thinkgem.jeesite.modules.cms.entity.Article;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +37,9 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 public class CategoryService extends TreeService<CategoryDao, Category> {
 
 	public static final String CACHE_CATEGORY_LIST = "categoryList";
-	
+	@Autowired
+	private ArticleDao articleDao;
+
 	private Category entity = new Category();
 	
 	@SuppressWarnings("unchecked")
@@ -86,6 +91,9 @@ public class CategoryService extends TreeService<CategoryDao, Category> {
 							categoryList.add(e);
 						}
 					}else{
+						List<Article> articles=articleDao.findByCategoryId(e.getId());
+//						System.out.println(articles.get(0).getCategory().getName());
+						e.setArticles(articles);
 						categoryList.add(e);
 					}
 				}
