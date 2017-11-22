@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.cms.entity.*;
+import com.thinkgem.jeesite.modules.cms.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,17 +26,6 @@ import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.servlet.ValidateCodeServlet;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.cms.entity.Article;
-import com.thinkgem.jeesite.modules.cms.entity.Category;
-import com.thinkgem.jeesite.modules.cms.entity.Comment;
-import com.thinkgem.jeesite.modules.cms.entity.Link;
-import com.thinkgem.jeesite.modules.cms.entity.Site;
-import com.thinkgem.jeesite.modules.cms.service.ArticleDataService;
-import com.thinkgem.jeesite.modules.cms.service.ArticleService;
-import com.thinkgem.jeesite.modules.cms.service.CategoryService;
-import com.thinkgem.jeesite.modules.cms.service.CommentService;
-import com.thinkgem.jeesite.modules.cms.service.LinkService;
-import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 
 /**
@@ -58,6 +49,8 @@ public class FrontController extends BaseController{
 	private CategoryService categoryService;
 	@Autowired
 	private SiteService siteService;
+	@Autowired
+	private DirectService directService;
 	
 	/**
 	 * 网站首页
@@ -308,6 +301,22 @@ public class FrontController extends BaseController{
 			return "{result:2, message:'验证码不能为空。'}";
 		}
 	}
+
+	/**
+	 * 		教官团队展示
+	 * @param model
+	 * @return
+	 */
+	/*@RequestMapping(value = {"direct"})
+	public String list( @RequestParam(required=false, defaultValue="1") Integer pageNo,
+						@RequestParam(required=false, defaultValue="15") Integer pageSize, Model model) {
+		Site site= CmsUtils.getSite(Site.defaultSiteId());
+		Page<Direct> page=new Page<Direct>(pageNo,pageSize);
+		Direct cmsDirect=new Direct();
+		page = cmsDirectService.findPage(page,cmsDirect);
+		model.addAttribute("page", page);
+		return "modules/cms/front/themes/"+site.getTheme();
+	}*/
 	
 	/**
 	 * 站点地图

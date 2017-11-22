@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.cms.dao.DirectDao">
+    
+	<sql id="cmsDirectColumns">
+		a.id AS "id",
+		a.direct_name AS "directName",
+		a.direct_title AS "directTitle",
+		a.direct_info AS "directInfo",
+		a.direct_mobile AS "directMobile",
+		a.direct_email AS "directEmail",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.direct_photo AS "directPhoto",
+		d.name AS "directAddress"
+	</sql>
+	
+	<sql id="cmsDirectJoins">
+		LEFT JOIN sys_area d ON a.id=d.id
+	</sql>
+    
+	<select id="get" resultType="Direct">
+		SELECT 
+			<include refid="cmsDirectColumns"/>
+		FROM cms_direct a
+		<include refid="cmsDirectJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<!--根据地区id获取该地区的教官-->
+	<select id="getDirectsByAddress" resultType="Direct">
+		SELECT
+		<include refid="cmsDirectColumns"/>
+		FROM cms_direct a
+		<include refid="cmsDirectJoins"/>
+		WHERE d.id = #{areaId}
+	</select>
+	
+	<select id="findList" resultType="Direct">
+		SELECT 
+			<include refid="cmsDirectColumns"/>
+		FROM cms_direct a
+		<include refid="cmsDirectJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Direct">
+		SELECT 
+			<include refid="cmsDirectColumns"/>
+		FROM cms_direct a
+		<include refid="cmsDirectJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO cms_direct(
+			id,
+			direct_name,
+			direct_title,
+			direct_info,
+			direct_mobile,
+			direct_email,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			direct_photo,
+			direct_address
+		) VALUES (
+			#{id},
+			#{directName},
+			#{directTitle},
+			#{directInfo},
+			#{directMobile},
+			#{directEmail},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{directPhoto},
+			#{directAddress}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE cms_direct SET 	
+			direct_name = #{directName},
+			direct_title = #{directTitle},
+			direct_info = #{directInfo},
+			direct_mobile = #{directMobile},
+			direct_email = #{directEmail},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			direct_photo = #{directPhoto},
+			direct_address = #{directAddress}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM cms_direct
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

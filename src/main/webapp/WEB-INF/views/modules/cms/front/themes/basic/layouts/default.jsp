@@ -9,6 +9,26 @@
 	<!-- Baidu tongji analytics --><script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="//hm.baidu.com/hm.js?82116c626a8d504a5c0675073362ef6f";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 	<sitemesh:head/>
 </head>
+<script type="text/javascript">
+    $(function () {
+        $(".dropdown").mouseover(function () {
+            $(this).addClass("open");
+        });
+
+        $(".dropdown").mouseleave(function(){
+            $(this).removeClass("open");
+        })
+
+    })
+</script>
+<%--<style type="text/css">--%>
+	<%--.navbar .nav > li .dropdown-menu {--%>
+		<%--margin: 0;--%>
+	<%--}--%>
+	<%--.navbar .nav > li:hover .dropdown-menu {--%>
+		<%--display: block;--%>
+	<%--}--%>
+<%--</style>--%>
 <body>
 	<div class="navbar navbar-fixed-top" style="position:static;margin-bottom:10px;">
       <div class="navbar-inner">
@@ -25,7 +45,7 @@
 				<c:forEach items="${fnc:getCategoryListByParentId('2',site.id)}" var="category" varStatus="status"><c:if test="${status.index lt 6}">
                     <c:set var="menuCategoryId" value=",${category.id},"/>
 		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''} dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="${category.url}" target="${category.target}"><span>${category.name}</span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="${category.url}" target="${category.target}"><span>${category.name}</span></a>
 						<%--<c:set var="articles" value="${category.articles}"/>--%>
 						<ul class="dropdown-menu">
 						<c:forEach var="article" items="${category.articles}" varStatus="artStatus">
