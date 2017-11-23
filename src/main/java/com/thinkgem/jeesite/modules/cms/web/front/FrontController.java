@@ -307,16 +307,16 @@ public class FrontController extends BaseController{
 	 * @param model
 	 * @return
 	 */
-	/*@RequestMapping(value = {"direct"})
+	@RequestMapping(value = "/direct")
 	public String list( @RequestParam(required=false, defaultValue="1") Integer pageNo,
 						@RequestParam(required=false, defaultValue="15") Integer pageSize, Model model) {
 		Site site= CmsUtils.getSite(Site.defaultSiteId());
 		Page<Direct> page=new Page<Direct>(pageNo,pageSize);
-		Direct cmsDirect=new Direct();
-		page = cmsDirectService.findPage(page,cmsDirect);
+		Direct direct=new Direct();
+		page = directService.findPage(page,direct);
 		model.addAttribute("page", page);
-		return "modules/cms/front/themes/"+site.getTheme();
-	}*/
+		return "modules/cms/front/themes/"+site.getTheme()+"frontDirect";
+	}
 	
 	/**
 	 * 站点地图

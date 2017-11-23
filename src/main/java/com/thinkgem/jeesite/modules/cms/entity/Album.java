@@ -38,7 +38,7 @@ public class Album extends DataEntity<Album> {
 		this.categoryId = categoryId;
 	}
 	
-	@Length(min=0, max=255, message="图片地址  一个数组长度必须介于 0 和 255 之间")
+	@Length(min=0, max=1500, message="图片地址  一个数组长度必须介于 0 和 1500 之间")
 	public String getImageAddress() {
 		return imageAddress;
 	}

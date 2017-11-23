@@ -40,10 +40,18 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
+		<%--<div class="control-group">
 			<label class="control-label">图片地址  一个数组：</label>
 			<div class="controls">
 				<form:input path="imageAddress" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>--%>
+		<div class="control-group">
+			<label class="control-label">图片地址:</label>
+			<div class="controls">
+				<input type="hidden" id="imageAddress" name="imageAddress"  value="${album.imageAddress}" />
+				<%--<form:hidden id="nameImage" path="photo" htmlEscape="false" maxlength="255" class="input-xlarge" />--%>
+				<sys:ckfinder input="imageAddress" type="images" uploadPath="/cms" selectMultiple="true"/>
 			</div>
 		</div>
 		<div class="control-group">

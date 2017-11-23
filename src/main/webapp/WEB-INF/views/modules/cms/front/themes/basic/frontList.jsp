@@ -43,6 +43,11 @@
 				<li><a href="${link.href}" target="_blank" style="color:${link.color}"><c:out value="${link.title}" /></a></li>
 			</c:forEach></ul>
 		  </c:if>
+		   <c:if test="${category.module eq 'picture'}">
+			   <ul><c:forEach items="${page.list}" var="picture">
+				   <li><span class="pull-right"><fmt:formatDate value="${picture.updateDate}" pattern="yyyy.MM.dd"/></span><a href="#" style="color:${article.color}">${fns:abbr(picture.albumName,96)}</a></li>
+			   </c:forEach></ul>
+		   </c:if>
   	  </div>
    </div>
 </body>

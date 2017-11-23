@@ -10,16 +10,27 @@
 	<sitemesh:head/>
 </head>
 <script type="text/javascript">
-    $(function () {
+    /*$(function () {
         $(".dropdown").mouseover(function () {
             $(this).addClass("open");
         });
-
         $(".dropdown").mouseleave(function(){
             $(this).removeClass("open");
         })
+    })*/
+    $(function() {
+        return $("a.dropdown-toggle:not(.multiselect)").click(function(e) {
+            $("ul.dropdown-menu:not(.multiselect-container)").css("display", "none");
+            $(this).next("ul.dropdown-menu").css("display", "block");
+            return e.stopPropagation();
+        });
+    });
 
-    })
+    $(document).on('click click.dropdown.data-api', function(e) {
+        if (!$(e.target).closest('.dropdown, .multiselect-container').length) {
+            return $("ul.dropdown-menu:not(.multiselect-container)").css("display", "none");
+        }
+    });
 </script>
 <%--<style type="text/css">--%>
 	<%--.navbar .nav > li .dropdown-menu {--%>
